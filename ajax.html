@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="ref_caut_mon.css">
+    <script src="https://code.jquery.com/jquery-3.6.2.js"></script>
+    <script src="ajax.js"></script>
+    <style>
+        .cls_0 {
+            background-color: 336699;
+            color: white;
+        }
+
+        .cls_1 {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body style="overflow: auto;"><br>
+    <div style="position: relative; left: 50px;">
+        <form name="searching" id="form1" method="post" action="">
+            <h3>
+                <u>Search:</u><br>
+            </h3>
+            <input type="text" placeholder="Column" name="c" class="form-control" style="width: 400px;">
+            <br>
+            <input type="text" placeholder="Data" name="d" class="form-control"  style="width: 400px;">
+            <br>
+            <button type="submit" class="btn btn-primary btn-lg" style="position: relative; left: 300px;width: 100px; height: 50px;">Search</button><br>
+        </form>
+        <form name="filter" id="form2" method="post" action="">
+            <h3>
+                <u>Filter:</u><br>
+            </h3>
+            <h5>
+                Course:<br>
+            </h5>
+            <div class="row" style="width: 750px;">
+
+                <!----------------------------col 1---------------------------------------------->
+                <div class="col-md-3">
+                    <input type="radio" name="Course" value="MCA(6 Year)" class="form-check-input">
+                    &nbsp;
+                    MCA(6 Year)
+                    <br>
+                    
+                    <input type="radio" name="Course" value="MBA(MS)(5 Year)" class="form-check-input">
+                    &nbsp;
+                    MBA(MS)(5 Year)
+                    <br>
+                    
+                    <input type="radio" name="Course" value="MBA(APR)" class="form-check-input">
+                    &nbsp;
+                    MBA(APR)
+                    <br>
+                    
+                    <input type="radio" name="Course" value="BCA" class="form-check-input">
+                    &nbsp;
+                    BCA
+                    <br>
+                </div>
+                <!----------------------------col 2----------------------------------------------->
+                <div class="col-md-3">
+                    <input type="radio" name="Course" value="Mtech(IT)(5.5 Year)" class="form-check-input">
+                    &nbsp;
+                    Mtech(IT)(5.5 Year)
+                    <br>
+
+                    <input type="radio" name="Course" value="MBA(Toursim)" class="form-check-input">
+                    &nbsp;
+                    MBA(Toursim)
+                    <br>
+                    
+                    <input type="radio" name="Course" value="MAPRM" class="form-check-input">
+                    &nbsp;
+                    MAPRM
+                    <br>
+                    
+                    <input type="radio" name="Course" value="BCA(Hons.)" class="form-check-input">
+                    &nbsp;
+                    BCA(Hons.)
+                    <br>
+                </div>
+                <!-----------------------------col 3------------------------------------------>
+                <div class="col-md-3">
+                    <input type="radio" name="Course" value="B.com(Hons.)" class="form-check-input">
+                    &nbsp;
+                    B.com(Hons.)
+                    <br>
+
+                    <input type="radio" name="Course" value="MBA(MS)(2 Years)" class="form-check-input">
+                    &nbsp;
+                    MBA(MS)(2 Years)
+                    <br>
+
+                    <input type="radio" name="Course" value="MTA" class="form-check-input">
+                    &nbsp;
+                    MTA
+                    <br>
+
+                    <input type="radio" name="Course" value="BBA" class="form-check-input">
+                    &nbsp;
+                    BBA
+                    <br>
+                </div>
+                <!--------------------------col 4--------------------------------------------->
+                <div class="col-md-3">
+                    <input type="radio" name="Course" value="MMS(5 Years)" class="form-check-input">
+                    &nbsp;
+                    MMS(5 Years)
+                </div>
+            </div>
+            <br>
+            
+            <h5>Date: </h5>
+            From:<input type="date" name="FromDate" placeholder="From" class="form-control" style="width: 200px; position: relative; bottom: 27px; left: 50px;"><br>
+            
+            To:<input type="date" name="ToDate" placeholder="To" class="form-control" style="width: 200px; position: relative; bottom: 27px; left: 50px;">
+            
+            <h5>
+                Process:
+            </h5>
+            <input type="radio" name="Process" value="Yes"  class="form-check-input">
+            &nbsp;Processed 
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="Process" value="No" class="form-check-input">&nbsp;Unprocessed<br><br>
+            <input type="submit" value="Filter" class="btn btn-primary btn-lg" style="position: relative; left: 130px;width: 100px; height: 50px;"><br>
+        </form>
+        <input type="button" onclick="window.location.reload();" value="Reset" class="btn btn-primary btn-lg" style="position: relative; left: 300px;width: 100px; height: 50px; bottom: 65px;">
+    </div>
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center flex-wrap mb-5">
+          <h1 class="mb-0 fw-bold">Students` List</h1>
+          <a href="export.php" class="btn btn-primary">Export to Excel</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="ref_caut_mon.css">
+    <style>
+        a:link, a:visited, a:hover, a:active{
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="background-color: #485461;">
+    <form name="admin" method="post" action="ad.php">
+        <center>
+
+            <div style="position: relative; top: 130px;">
+
+                <div style="height: 600px; width: 700px; border-radius: 20px; box-shadow: 3px 10px 50px 3px black;">
+
+                    <img src="user_img.png" alt="logo" height="150px" width="150px" style="position: relative; top: 50px;">
+
+                    <h3 style="position: relative; top: 70px; color: black; font-weight: bolder;">Admin login page</h3>
+
+                    <div style="position: relative; top: 100px;">
+
+                        <input type="text" name="Username" placeholder="Username" class="form-control" style="width: 500px; font-weight: bolder; font-size: large;" required maxlength="20"><br>
+
+                        <input type="password" name="Password" id="pass" placeholder="Password" required maxlength="16" class="form-control" style="width: 500px;  font-weight: bolder;  font-size: large;" minlength="8"><br>
+
+                        <input type="submit" value="Login" class="btn btn-primary btn-lg"><br>
+
+                        <button style="background-color: #0a2351; position: relative; top:30px; height: 70px; width: 350px;"><a href="refund_of_caution_money.html" link="white">Application for Refund of Caution Money</a></button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </center>
+    </form>
+</body>
+</html>

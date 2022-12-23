@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="ref_caut_mon.css">
+    <style>
+        a:link, a:visited, a:hover, a:active{
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.2.js"></script>
+    <script src="captcha.js"></script>
+</head>
+<body>
+    <div class="container" style="border-radius: 20px; box-shadow: 5px 5px 10px 10px rgb(69, 69, 69)">
+        <!----------------------------------DIV------------------------------------------------------>
+        <div class="row">
+            <!---------------------------------FORM-------------------------------------------------->
+            <div class="col-md-3">  
+                <button style="background-color: #0a2351; position: relative; top: 10%;"><a href="refund_of_caution_money.html">Application for Refund of Caution Money</a></button>
+                <button style="background-color: #0a2351; position: relative; top: 15%;height: 50px; width: 306px;"><a href="adm.html">Admin Login</a></button>
+                <button style="background-color: #0a2351; position: relative; top: 20%;height: 60px; width: 306px;"><a href="form_status.html">Status Checker For Refund Money</a></button>
+            </div>
+            <div class="col-md-9">
+                <h1 class="text-center">Application for Refund of Caution Money</h1>
+                <hr>
+
+            <div class="col-xs-4 col-md-4" style="float: left;">
+            
+            </div>
+            <div class="col-xs-6 col-md-6"  style="float: right;">
+            
+
+                <form id="refund" enctype="multipart/form-data" method="post" action="insertion.php" name="f1"> 
+                    <div><input type="text" name="name" placeholder="Name" maxlength="30" class="form-control" required></div><br>
+                    
+                    <div><input type="text" name="father" placeholder="Father's name" maxlength="30" class="form-control" required></div><br>
+                    
+                    <div><input type="text" name="mother" placeholder="Mother's name" maxlength="30" class="form-control" required></div><br>
+                    <div><input type="email" name="email" placeholder="Email ID" maxlength="40" class="form-control" required></div><br>
+                    
+                    <div><input type="number" name="pin" placeholder="PIN" maxlength="6" class="form-control" required></div><br>
+                    
+                    
+                    <div><input type="number" name="mobile" placeholder="Phone No." maxlength="11" minlength="10"  class="form-control" required></div><br>
+                    <div><input type="number" name="alt" placeholder="Alternate No." maxlength="11" minlength="10" class="form-control" required></div><br>
+                    
+                    <div><textarea name="permanent" placeholder="Permanent address" maxlength="50" class="form-control" id="cp1" required></textarea></div><br>
+                    <div><textarea name="local" placeholder="Local Address" maxlength="50" class="form-control" id="cp2" required></textarea></div>
+                    <button id="cpy">Same as permanent</button><br><br>
+                    
+                    <div>
+                        <span>Program:</span>
+                        <select name="program" id="program" class="form-control" required>
+                            <option>MCA(6 Year)</option>
+                            <option>Mtech(IT)(5.5 Year)</option>
+                            <option>B.com(Hons.)</option>
+                            <option>MBA(MS)(5 Year)</option>
+                            <option>MBA(Toursim)</option>
+                            <option>MBA(MS)(2 Years)</option>
+                            <option>MBA(APR)</option>
+                            <option>MAPRM</option>
+                            <option>MTA</option>
+                            <option>BCA</option>
+                            <option>BCA(Hons.)</option>
+                            <option>BBA</option>
+                            <option>MMS(5 Years)</option>
+                            <option>BMS</option>
+                        </select>
+                    </div><br>
+                    
+                    <div><input type="text" name="roll" placeholder="Class Roll No: XX-2kXX-XXX"  maxlength="12" class="form-control" required></div><br>
+                    
+                    <div><input type="text" name="enroll" maxlength="10" minlength="10" placeholder="Enrollment No."  class="form-control"required></div><br>
+                    
+                    <div>Fees Deposited at Time of Admission: <br>
+
+                        <ol type="a">
+                            <li>
+                                <input type="text" name="receipt" placeholder="Recipt No."  maxlength="20" class="form-control" required>
+                            </li>
+                            <br>
+                            <li>
+                                <input type="date" name="date" placeholder="Date of Receipt"  class="form-control" required>
+                            </li>
+                            <br>
+                            <li>
+                                <input type="number" name="amount" placeholder="Amount"  maxlength="11" class="form-control" required>
+                            </li>
+                        </ol>
+                    </div><br>
+                    <!--<div><input type="number" name="last" placeholder="Last Examination Attended" class="form-control" required></div>
+                    <br><br>-->
+                    <input type="file" name="fileToUpload" class="form-control" required><br>
+                    Captcha: <div id="custom_captcha"></div>
+                    <input type="submit" value="Submit" name="enter" class="btn btn-primary btn-lg" style="position: relative; left: 130px;">
+                </form>
+            </div>
+        </div>
+        <!--------------------------------FORM END---------------------------------------------->
+    </div>
+    <!-------------------------------------DIV END-------------------------------------------------->
+</div>
+</body>
+<script>
+    document.getElementById("cpy").addEventListener('click',()=>{
+        var x=document.getElementById("cp1").value;
+        f1.local.value=x;
+    });
+</script>
+</html>

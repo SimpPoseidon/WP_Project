@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="ref_caut_mon.css">
+    <style>
+        a:link, a:visited, a:hover, a:active{
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.2.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("#status").submit(function(e)
+            {
+                e.preventDefault();
+                $.ajax(
+                {
+                    method: "post",
+                    url: "status.php",
+                    data: $(this).serialize(),
+                    datatype: "text",
+                    success: function(Response)
+                    {
+                        $("body").html(Response);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body style="background-color: #91a3b0;">
+    <form id="status" name="admin" method="post" action="">
+        <center>
+
+            <div style="position: relative; top: 130px;">
+
+                <div style="height: 600px; width: 700px; border-radius: 20px; box-shadow: 3px 10px 50px 3px black;">
+
+                    <img src="status.png" alt="logo" height="150px" width="150px" style="position: relative; top: 50px;">
+
+                    <h3 style="position: relative; top: 70px; color: black; font-weight: bolder;">Status Checker For Refund Money</h3>
+
+                    <div style="position: relative; top: 100px;">
+
+                        <input type="text" name="appid" id="appid" placeholder="Application ID" maxlength="11" class="form-control" style="width: 500px; font-weight: bolder; font-size: large;" required><br>
+
+                        <input type="text" name="enrollment" id="enrollment" placeholder="Enrollment Number" required maxlength="10" class="form-control" style="width: 500px;  font-weight: bolder;  font-size: large;" minlength="10"><br>
+
+                        <input type="submit" value="Login" class="btn btn-primary btn-lg"><br>
+
+                        <button style="background-color: #0a2351; position: relative; top:30px; height: 70px; width: 350px;"><a href="refund_of_caution_money.html" link="white">Application for Refund of Caution Money</a></button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </center>
+    </form>
+</body>
+</html>
