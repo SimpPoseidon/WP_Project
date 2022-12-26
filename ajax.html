@@ -40,83 +40,18 @@
             <h5>
                 Course:<br>
             </h5>
-            <div class="row" style="width: 750px;">
-
-                <!----------------------------col 1---------------------------------------------->
-                <div class="col-md-3">
-                    <input type="radio" name="Course" value="MCA(6 Year)" class="form-check-input">
-                    &nbsp;
-                    MCA(6 Year)
-                    <br>
-                    
-                    <input type="radio" name="Course" value="MBA(MS)(5 Year)" class="form-check-input">
-                    &nbsp;
-                    MBA(MS)(5 Year)
-                    <br>
-                    
-                    <input type="radio" name="Course" value="MBA(APR)" class="form-check-input">
-                    &nbsp;
-                    MBA(APR)
-                    <br>
-                    
-                    <input type="radio" name="Course" value="BCA" class="form-check-input">
-                    &nbsp;
-                    BCA
-                    <br>
-                </div>
-                <!----------------------------col 2----------------------------------------------->
-                <div class="col-md-3">
-                    <input type="radio" name="Course" value="Mtech(IT)(5.5 Year)" class="form-check-input">
-                    &nbsp;
-                    Mtech(IT)(5.5 Year)
-                    <br>
-
-                    <input type="radio" name="Course" value="MBA(Toursim)" class="form-check-input">
-                    &nbsp;
-                    MBA(Toursim)
-                    <br>
-                    
-                    <input type="radio" name="Course" value="MAPRM" class="form-check-input">
-                    &nbsp;
-                    MAPRM
-                    <br>
-                    
-                    <input type="radio" name="Course" value="BCA(Hons.)" class="form-check-input">
-                    &nbsp;
-                    BCA(Hons.)
-                    <br>
-                </div>
-                <!-----------------------------col 3------------------------------------------>
-                <div class="col-md-3">
-                    <input type="radio" name="Course" value="B.com(Hons.)" class="form-check-input">
-                    &nbsp;
-                    B.com(Hons.)
-                    <br>
-
-                    <input type="radio" name="Course" value="MBA(MS)(2 Years)" class="form-check-input">
-                    &nbsp;
-                    MBA(MS)(2 Years)
-                    <br>
-
-                    <input type="radio" name="Course" value="MTA" class="form-check-input">
-                    &nbsp;
-                    MTA
-                    <br>
-
-                    <input type="radio" name="Course" value="BBA" class="form-check-input">
-                    &nbsp;
-                    BBA
-                    <br>
-                </div>
-                <!--------------------------col 4--------------------------------------------->
-                <div class="col-md-3">
-                    <input type="radio" name="Course" value="MMS(5 Years)" class="form-check-input">
-                    &nbsp;
-                    MMS(5 Years)
-                </div>
+            <div id="course">
+                Filter via Course?: <input type="button" id="coursequeyes" value="Yes">
+                <input type="button" id="coursequeno" value="No">
             </div>
+            <script>
+                var c=document.getElementById("course");
+                document.getElementById("coursequeyes").addEventListener('click',()=>
+                {
+                    c.innerHTML="";
+                });
+            </script>
             <br>
-            
             <h5>Date: </h5>
             From:<input type="date" name="FromDate" placeholder="From" class="form-control" style="width: 200px; position: relative; bottom: 27px; left: 50px;"><br>
             
