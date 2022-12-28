@@ -13,9 +13,9 @@
             echo"<script>window.alert('E Mail Address shouldn't exceed 40 characters');</script>";
             return false;
         }
-        if(strlen($_POST["permanent"])>50 || strlen($_POST["local"])>50)
+        if(strlen($_POST["permanent"])>100 )
         {
-            echo"<script>window.alert('Address should not exceed 50 characters');</script>";
+            echo"<script>window.alert('Address should not exceed 100 characters');</script>";
             return false;
         }
         if(strlen(strval($_POST["pin"]))>6)
@@ -45,20 +45,102 @@
         }
         if(strlen($_POST["receipt"])>20)
         {
-            echo"<script>window.alert('Receipt No. or Last Examination Attended should not exceed 20 characters');</script>";
+            echo"<script>window.alert('Receipt No. should not exceed 20 characters');</script>";
             return false;
         }
         if(!FileUplod_check()){
             echo"<script>window.alert('Coudn't upload file');</script>";
             return false;
         }
+        if($_POST["sbi"] == "Yes"){
+            if (!PassBook_check()) {
+                echo "<script>window.alert('Coudn't upload Pass Book');</script>";
+                return false;
+            }
+        }
 
         return true;
     }
 
+    function PassBook_check(){
+        if ($_FILES["passBook"]["error"] !== UPLOAD_ERR_OK ) {
+
+            switch ($_FILES["passBook"]["error"]) {
+                case UPLOAD_ERR_PARTIAL:
+                    echo"<script>window.alert('File only partially uploaded');</script>";
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    echo"<script>window.alert('No file was uploaded');</script>";
+                    break;
+                case UPLOAD_ERR_EXTENSION:
+                    echo"<script>window.alert('File upload stopped by a PHP extension');</script>";
+                    break;
+                case UPLOAD_ERR_FORM_SIZE:
+                    echo"<script>window.alert('File exceeds MAX_FILE_SIZE in the HTML form');</script>";
+                    break;
+                case UPLOAD_ERR_INI_SIZE:
+                    echo"<script>window.alert('File exceeds upload_max_filesize in php.ini');</script>";
+                    break;
+                case UPLOAD_ERR_NO_TMP_DIR:
+                    echo"<script>window.alert('Temporary folder not found');</script>";
+                    break;
+                case UPLOAD_ERR_CANT_WRITE:
+                    echo"<script>window.alert('Failed to write file');</script>";
+                    break;
+                default:
+                echo"<script>window.alert('Unknown upload error');</script>";
+                    break;
+            }
+        return false;
+        }
+
+        // Reject uploaded file larger than _X_MB
+        if ($_FILES["passBook"]["size"] > (1048576*5)) {
+            echo"<script>window.alert('max 5Mb');</script>";
+            return false;
+        }
+
+        // Use fileinfo to get the required file type
+       
+        $passbook_allow = array('png', 'jpg','jpeg','pdf');
+        $passbook_name = $_FILES['passBook']['name'];
+        $ext_passBook = pathinfo($passbook_name, PATHINFO_EXTENSION);
+        
+        if ( ! in_array($ext_passBook, $passbook_allow)) {
+            echo"<script>window.alert('Invalid file type');</script>";
+        return false;
+        }
+
+       
+        return true;
+    }
+
+    //File Rename and uplode
+    function PassBookuplode($AppNo){
+        // Replace any characters not \w- in the original filename
+        $pathinfo_pass = pathinfo($_FILES["passBook"]["name"]);
+
+        // $base = $pathinfo_pass["passbook_name"];
+
+        // $base = preg_replace("/[^\w-]/", "_", $base);
+
+        $passbook_name = $AppNo . "." . $pathinfo_pass["extension"];
+
+        $pass_dest = __DIR__ . "/PassBook_Doc/" . $passbook_name;
+
+        
+        if ( ! move_uploaded_file($_FILES["passBook"]["tmp_name"], $pass_dest)) {
+
+           echo"<script>window.alert('Can't move uploaded Pass Book');</script>";
+        
+        }
+   return $pass_dest;
+       
+   }
+
     //input file check
     function FileUplod_check(){
-        if ($_FILES["fileToUpload"]["error"] !== UPLOAD_ERR_OK) {
+        if ($_FILES["fileToUpload"]["error"] !== UPLOAD_ERR_OK ) {
 
             switch ($_FILES["fileToUpload"]["error"]) {
                 case UPLOAD_ERR_PARTIAL:
@@ -170,7 +252,6 @@
         $pin=$_POST["pin"];
         $an=$_POST["alt"];
         $mn=$_POST["mobile"];
-        $la=$_POST["local"];
         $pr=filter_input(INPUT_POST,'program');
         $rn=$_POST["roll"];
         $en=$_POST["enroll"];
@@ -182,12 +263,13 @@
         $time=date("h:i:s a");
 
         //insertion query
-        $sql="INSERT INTO IIPS (Name,Fathers_Name,Mothers_Name,PermanentAddress,Email,
-        Pincode,AltNo,MobileNo,LocalAddress,Program,ClassRollNo,EnrollmentNo,
+        $sql="INSERT INTO IIPS (Name,Fathers_Name,Mothers_Name,PostalAddress,Email,
+        Pincode,AltNo,MobileNo,CourseEnrolled,ClassRollNo,EnrollmentNo,
         ReceiptNo,Date_Receipt,Amount,Date_of_sub,Time_of_sub) 
-        values ('$name','$fname','$mname','$pa','$emailad',$pin,$an,$mn,'$la','$pr','$rn','$en',
+        values ('$name','$fname','$mname','$pa','$emailad',$pin,$an,$mn,'$pr','$rn','$en',
         '$ren','$d',$a,'$dos','$time');";
         $result=$conn->query($sql);
+
         if($result)
         {
             
@@ -203,16 +285,33 @@
 
             //File uplode at Doc folder and address of file insertion in data base
             $FileAdd_=uplodeFile($id);
-            $File = "UPDATE iips set File='$FileAdd_' where Application_ID=$id;";
+            $File = "UPDATE iips set ReceiptFile='$FileAdd_' where Application_ID=$id;";
             $insertAdd = $conn->query($File);
 
-            //calling php code to send confermation of regestration via Email
+            if($_POST["sbi"] == "Yes"){
+                $accNo = $_POST["acc_no"];
+                $ifsc = $_POST["ifsc"];
+    
+                 //Pass Book uplode at PassBook_Doc folder and address of file insertion in data base
+                 $passbook_add=PassBookuplode($id);
+                 
+                 $sbi_ac = "UPDATE iips set AccountNo='$accNo' where Application_ID=$id;";
+                 $insertsbi_ac = $conn->query($sbi_ac);
+                 $sbi_ifsc = "UPDATE iips set IFSC='$ifsc' where Application_ID=$id;";
+                 $insertsbi_ifsc = $conn->query($sbi_ifsc);
+                 $sbi_pass = "UPDATE iips set Passbook='$passbook_add' where Application_ID=$id;";
+                 $insertsbi_pass = $conn->query($sbi_pass);
+
+            }
+
+            //calling php code to send confirmation of registration via Email
             include "Confirmation_email.php";
             
-            echo"<script>window.history.back();</script>";     
+            echo"<script>window.alert('A confirmation mail has been sent to you on email !!!');window.history.back();</script>";     
         }
         else
         {
+
             echo"$conn->error";
         }
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Dec 27, 2022 at 08:24 AM
+-- Generation Time: Dec 27, 2022 at 01:08 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -34,12 +34,12 @@ CREATE TABLE IF NOT EXISTS `iips` (
   `Name` varchar(30) NOT NULL,
   `Fathers_Name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Mothers_Name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `PostalAddress` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `PostalAddress` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Email` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Pincode` int(6) NOT NULL,
   `AltNo` int(10) NOT NULL,
   `MobileNo` int(10) NOT NULL,
-  `CourseEnrolled` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CourseEnrolled` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ClassRollNo` varchar(12) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `EnrollmentNo` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `AccountNo` varchar(20) NOT NULL,

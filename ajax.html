@@ -27,8 +27,26 @@
             <h3>
                 <u>Search:</u><br>
             </h3>
-            <input type="text" placeholder="Column" name="c" class="form-control" style="width: 400px;">
-            <br>
+            <select name="c" class="form-control" style="width: 400px;">
+                <option>Enrollment No.</option>
+                <option>Application ID</option>
+                <option>Student`s Name</option>
+                <option>Father`s Name</option>
+                <option>Mother`s Name</option>
+                <option>Postal Address</option>
+                <option>Email</option>
+                <option>Pincode</option>
+                <option>Mobile No.</option>
+                <option>Alternate No.</option>
+                <option>Course Enrolled</option>
+                <option>Roll No.</option>
+                <option>Receipt No.</option>
+                <option>Date of Receipt</option>
+                <option>Amount</option>
+                <option>Process</option>
+                <option>Date of Submission</option>
+                <option>Time of Submission</option>
+            </select><br>
             <input type="text" placeholder="Data" name="d" class="form-control"  style="width: 400px;">
             <br>
             <button type="submit" class="btn btn-primary btn-lg" style="position: relative; left: 300px;width: 100px; height: 50px;">Search</button><br>
@@ -40,18 +58,12 @@
             <h5>
                 Course:<br>
             </h5>
-            <div id="course">
-                Filter via Course?: <input type="button" id="coursequeyes" value="Yes">
-                <input type="button" id="coursequeno" value="No">
+            <div>
+                Filter via Course?: <br>Yes: <input class="form-check-input" type="radio" id="coursequeyes" name="que" value="Yes">&nbsp;&nbsp;
+                No: <input class="form-check-input" type="radio" id="coursequeno" value="No" name="que" value="No">
             </div>
-            <script>
-                var c=document.getElementById("course");
-                document.getElementById("coursequeyes").addEventListener('click',()=>
-                {
-                    course.innerHTML="";
-                });
-            </script>
             <br>
+            <div id="course"></div>
             <h5>Date: </h5>
             From:<input type="date" name="FromDate" placeholder="From" class="form-control" style="width: 200px; position: relative; bottom: 27px; left: 50px;"><br>
             
@@ -75,4 +87,17 @@
         </div>
     </div>
 </body>
+<script>
+    var c=document.getElementById("course");
+    var yes=document.getElementById("coursequeyes");
+    var no=document.getElementById("coursequeno");
+    no.addEventListener('click',()=>
+    {
+        c.innerHTML="";
+    });
+    yes.addEventListener('click',()=>
+    {
+        c.innerHTML="<select class='form-control'><option>MCA(6 Years/5 Years)</option><option>Mtech(IT)(5 Years/5.5 Years)</option><option>B.com(Hons.)</option><option>MBA(MS)(5 Years)</option><option>MBA(Toursim)(5 Years)</option><option>MBA(Toursim)(2 Years)</option><option>MBA(MS)(2 Years)</option><option>MBA(APR)</option><option>MBA(Ent)</option></select><br>";
+    });
+</script>
 </html>
