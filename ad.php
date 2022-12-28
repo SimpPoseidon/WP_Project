@@ -25,7 +25,7 @@
             <center>
             <div id='prev' style='font-family: Lucida Console; font-size:small; '>
             <h3 style='font-size:xx-large;'>Database</h3>
-            <table class='table table-striped table-dark table-bordered table-responsive' border='3' cellpadding='7'>
+            <table class='table table-striped table-dark table-bordered table-responsive'>
             <tr>
             <th align='center'>Application ID</th>
             <th align='center'>Student`s Name</th>
